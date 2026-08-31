@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Side by Side · Great Depression Studies</title>
+<title>Guía de Lectura · Unit 6</title>
 <style>
   :root{
     --paper:#EFE8D8;
@@ -14,7 +14,8 @@
     --clay-dark:#7C3316;
     --field:#3F5A3B;
     --field-light:#E4EADC;
-    --dust:#C9A971;
+    --ocean:#1F5A6E;
+    --ocean-light:#DCEBEE;
     --wire:#B7A98A;
     --radio-amber:#B8801E;
     --card:#F7F2E6;
@@ -71,18 +72,23 @@
     color:var(--clay-dark); margin:0 0 10px;
   }
   .cover h1{
-    font-size:2.5rem; margin:0 0 6px; line-height:1.08; color:var(--ink);
+    font-size:2.3rem; margin:0 0 6px; line-height:1.08; color:var(--ink);
     font-weight:normal; font-family:'Iowan Old Style', Georgia, serif;
   }
   .cover .sub{font-size:1.05rem; color:var(--ink-soft); font-style:italic; margin:0 0 18px;}
   .cover .meta{font-family:'Trebuchet MS', sans-serif; font-size:12.5px; color:var(--ink-soft);}
 
-  /* ---- lee esto primero ---- */
-  .brief{
-    background:var(--card); border-left:4px solid var(--field);
-    padding:16px 18px; margin:0 0 34px; font-size:0.95rem;
+  /* ---- exam format strip ---- */
+  .examstrip{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:0 0 34px;
   }
-  .brief strong{color:var(--field);}
+  @media (max-width:640px){.examstrip{grid-template-columns:1fr;}}
+  .exam-pill{
+    background:var(--card); border:1px solid var(--wire); border-radius:4px;
+    padding:12px 14px; text-align:center;
+  }
+  .exam-pill .icon{font-size:1.3rem; display:block; margin-bottom:4px;}
+  .exam-pill .label{font-family:'Trebuchet MS', sans-serif; font-size:12px; font-weight:bold; color:var(--clay-dark);}
 
   h2.section-title{
     font-size:1.5rem; margin:50px 0 6px; padding-bottom:8px;
@@ -120,6 +126,7 @@
   }
   .story-text{font-size:1rem;}
   .story-text b{color:var(--clay-dark);}
+  .story-text i{color:var(--ocean);}
 
   .quote-block{
     background:var(--field-light); border-left:4px solid var(--field);
@@ -140,34 +147,32 @@
     display:inline-block; font-family:'Trebuchet MS', sans-serif; font-size:10.5px;
     color:#fff; background:var(--field); padding:2px 7px; border-radius:2px; margin-bottom:8px;
   }
-
-  /* ---- food group grid ---- */
-  .food-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:16px 0;}
-  @media (max-width:640px){.food-grid{grid-template-columns:1fr;}}
-  .food-card{
-    border:1px solid var(--wire); border-radius:3px; padding:13px 15px; background:var(--card);
-  }
-  .food-card h4{
-    margin:0 0 5px; font-family:'Trebuchet MS', sans-serif; font-size:12.5px;
-    color:var(--field); letter-spacing:0.02em;
-  }
-  .food-card p{margin:0; font-size:0.9rem;}
-
-  /* ---- timeline (Dust Bowl) ---- */
-  .timeline{border-left:3px solid var(--dust); margin:18px 0 18px 8px; padding-left:20px;}
-  .tl-item{position:relative; padding-bottom:18px;}
-  .tl-item:last-child{padding-bottom:0;}
-  .tl-item::before{
-    content:''; position:absolute; left:-26px; top:4px; width:11px; height:11px;
-    border-radius:50%; background:var(--clay); border:2px solid var(--paper);
-  }
-  .tl-year{font-family:'Trebuchet MS', sans-serif; font-size:12px; font-weight:bold; color:var(--clay-dark);}
-  .tl-text{font-size:0.92rem; margin-top:2px;}
+  .concept.ocean{border-color:var(--ocean);}
+  .concept.ocean .tag{background:var(--ocean);}
 
   .caption-box{
     background:var(--paper-dark); border:1px dashed var(--wire); padding:10px 14px;
     font-size:0.85rem; font-style:italic; color:var(--ink-soft); margin:14px 0;
   }
+
+  /* ---- listening practice box ---- */
+  .listen-box{
+    background:var(--ocean-light); border:1px solid var(--ocean); border-radius:4px;
+    padding:16px 18px; margin:18px 0;
+  }
+  .listen-box .lb-head{
+    font-family:'Trebuchet MS', sans-serif; font-size:12.5px; font-weight:bold;
+    color:var(--ocean); margin:0 0 8px; display:flex; align-items:center; gap:6px;
+  }
+  .listen-box ol{margin:0; padding-left:20px; font-size:0.92rem;}
+  .listen-box li{margin-bottom:6px;}
+
+  /* ---- character compare ---- */
+  .compare-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
+  @media (max-width:640px){.compare-grid{grid-template-columns:1fr;}}
+  .compare-card{border:1px solid var(--wire); border-radius:3px; padding:14px 16px; background:var(--card);}
+  .compare-card h4{margin:0 0 6px; font-family:'Trebuchet MS', sans-serif; font-size:13px; color:var(--ocean);}
+  .compare-card p{margin:0; font-size:0.9rem;}
 
   /* ---- cheatsheet ---- */
   .cheat{
@@ -188,20 +193,17 @@
 
 <div class="topbar">
   <nav class="topbar-nav" id="tocNav">
-    <a href="#concepto" class="active">
-      <span class="lang-es">Concepto</span><span class="lang-en">Concept</span>
+    <a href="#vocabulario" class="active">
+      <span class="lang-es">Vocabulario</span><span class="lang-en">Vocabulary</span>
     </a>
-    <a href="#historia">
-      <span class="lang-es">Dolores & César</span><span class="lang-en">Dolores & Cesar</span>
-    </a>
-    <a href="#nutricion">
-      <span class="lang-es">Nutrición</span><span class="lang-en">Nutrition</span>
-    </a>
-    <a href="#dustbowl">
-      <span class="lang-es">Dust Bowl</span><span class="lang-en">Dust Bowl</span>
+    <a href="#dolphins">
+      <span class="lang-es">Blue Dolphins</span><span class="lang-en">Blue Dolphins</span>
     </a>
     <a href="#fireside">
       <span class="lang-es">Fireside Chats</span><span class="lang-en">Fireside Chats</span>
+    </a>
+    <a href="#sidebyside">
+      <span class="lang-es">Side by Side</span><span class="lang-en">Side by Side</span>
     </a>
     <a href="#cheatsheet">
       <span class="lang-es">Resumen</span><span class="lang-en">Summary</span>
@@ -217,13 +219,13 @@
 
   <div class="cover">
     <p class="kicker">
-      <span class="lang-es">ESTUDIOS SOCIALES · GRAN DEPRESIÓN</span>
-      <span class="lang-en">SOCIAL STUDIES · THE GREAT DEPRESSION</span>
+      <span class="lang-es">LENGUAJE · UNIDAD 6 — TEXTOS DE NO FICCIÓN Y FICCIÓN HISTÓRICA</span>
+      <span class="lang-en">LANGUAGE ARTS · UNIT 6 — NONFICTION & HISTORICAL FICTION</span>
     </p>
-    <h1>Side by Side</h1>
+    <h1>Guía de Lectura</h1>
     <p class="sub">
-      <span class="lang-es">Dolores Huerta, César Chávez y la vida durante la Gran Depresión</span>
-      <span class="lang-en">Dolores Huerta, Cesar Chavez, and life during the Great Depression</span>
+      <span class="lang-es">Island of the Blue Dolphins · Fireside Chats · Side by Side</span>
+      <span class="lang-en">Island of the Blue Dolphins · Fireside Chats · Side by Side</span>
     </p>
     <p class="meta">
       <span class="lang-es">Guía de concepto — 31 de agosto de 2026</span>
@@ -231,22 +233,28 @@
     </p>
   </div>
 
-  <div class="brief">
-    <span class="lang-es">
-      <strong>Solo lo esencial.</strong> Cinco piezas de contenido — vocabulario, una biografía, nutrición, el Dust Bowl y las charlas de Roosevelt — reducidas a lo que realmente hay que saber. Nada de relleno: si aparece aquí, es porque importa.
-    </span>
-    <span class="lang-en">
-      <strong>Just the essentials.</strong> Five pieces of content — vocabulary, a biography, nutrition, the Dust Bowl, and Roosevelt's chats — cut down to what actually matters. No filler: if it's here, it counts.
-    </span>
+  <div class="examstrip">
+    <div class="exam-pill">
+      <span class="icon">🎧</span>
+      <span class="label"><span class="lang-es">Comprensión auditiva</span><span class="lang-en">Listening</span></span>
+    </div>
+    <div class="exam-pill">
+      <span class="icon">🔤</span>
+      <span class="label"><span class="lang-es">Vocabulario</span><span class="lang-en">Vocabulary</span></span>
+    </div>
+    <div class="exam-pill">
+      <span class="icon">📖</span>
+      <span class="label"><span class="lang-es">Lectura (opción múltiple)</span><span class="lang-en">Reading (multiple choice)</span></span>
+    </div>
   </div>
 
-  <!-- ============ CONCEPTO / VOCABULARIO ============ -->
-  <h2 class="section-title" id="concepto">
+  <!-- ============ VOCABULARIO ============ -->
+  <h2 class="section-title" id="vocabulario">
     <span class="lang-es">Vocabulario clave</span><span class="lang-en">Key Vocabulary</span>
   </h2>
   <p class="section-desc">
-    <span class="lang-es">Bilingüe siempre — es lo que hay que memorizar.</span>
-    <span class="lang-en">Always bilingual — this is what you memorize.</span>
+    <span class="lang-es">Bilingüe siempre — es lo que hay que memorizar para la parte de vocabulario del examen.</span>
+    <span class="lang-en">Always bilingual — this is what you memorize for the vocabulary section of the exam.</span>
   </p>
 
   <div class="glossary">
@@ -272,9 +280,93 @@
     <div class="gterm">20. Liberation</div><div class="gdef"><span class="lang-es">Liberación — el acto de obtener la igualdad de derechos y la libertad social.</span><span class="lang-en">Liberation — the act of gaining equal rights and social freedom.</span></div>
   </div>
 
-  <!-- ============ HISTORIA: DOLORES & CESAR ============ -->
-  <h2 class="section-title" id="historia">
-    <span class="lang-es">Dolores Huerta & César Chávez</span><span class="lang-en">Dolores Huerta & Cesar Chavez</span>
+  <!-- ============ ISLAND OF THE BLUE DOLPHINS ============ -->
+  <h2 class="section-title" id="dolphins">
+    <span class="lang-es">Island of the Blue Dolphins</span><span class="lang-en">Island of the Blue Dolphins</span>
+  </h2>
+  <p class="section-desc">
+    <span class="lang-es">Ficción histórica — personajes inventados en un tiempo y lugar reales. Por Scott O'Dell.</span>
+    <span class="lang-en">Historical fiction — made-up characters in a real time and place. By Scott O'Dell.</span>
+  </p>
+
+  <div class="concept ocean">
+    <span class="tag"><span class="lang-es">LO ESENCIAL</span><span class="lang-en">THE ESSENTIAL</span></span>
+    <p>
+      <span class="lang-es">Una niña narradora y su hermano menor Ramo recogen raíces cerca de la costa cuando ella ve un barco Aleut acercándose (parecía una concha, luego una gaviota, luego un barco de velas rojas). Ella no le dice nada a Ramo para que siga ayudando y no salga corriendo. Ramo tiene ojos grandes y oscuros "como los de un lagarto" y le gusta imaginar cosas — para él el mar es una piedra azul.</span>
+      <span class="lang-en">A girl narrator and her younger brother Ramo gather roots near the coast when she spots an Aleut ship approaching (it looked like a shell, then a gull, then a ship with red sails). She says nothing to Ramo so he keeps helping instead of running off. Ramo has big dark eyes "like a lizard's" and likes to pretend things — to him the sea is a blue stone.</span>
+    </p>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-card">
+      <h4><span class="lang-es">LA NARRADORA</span><span class="lang-en">THE NARRATOR</span></h4>
+      <p><span class="lang-es">Observadora, calculadora. Ve el barco pero calla para que Ramo no deje de ayudar. Práctica: "yo dig roots and it is I who will eat them."</span><span class="lang-en">Observant, calculating. She sees the ship but stays quiet so Ramo keeps helping. Practical: "I dig roots and it is I who will eat them."</span></p>
+    </div>
+    <div class="compare-card">
+      <h4>RAMO</h4>
+      <p><span class="lang-es">Tiene 12 años, mitad de la edad de su hermana. Rápido como un grillo, imaginativo — inventa que el mar es una piedra. Ojos "como de lagarto".</span><span class="lang-en">He is 12, half his sister's age. Quick as a cricket, imaginative — he pretends the sea is a stone. Eyes "like a lizard's".</span></p>
+    </div>
+  </div>
+
+  <div class="listen-box">
+    <p class="lb-head">🎧 <span class="lang-es">PRÁCTICA DE COMPRENSIÓN AUDITIVA</span><span class="lang-en">LISTENING PRACTICE</span></p>
+    <ol>
+      <li><span class="lang-es">Pide a alguien que te lea los párrafos 1–5 en voz alta (o grábate leyéndolos). Cierra el libro y escucha.</span><span class="lang-en">Ask someone to read paragraphs 1–5 aloud to you (or record yourself reading them). Close the book and listen.</span></li>
+      <li><span class="lang-es">Mientras escuchas, anota: ¿qué tres cosas pensó la narradora que era el barco antes de reconocerlo?</span><span class="lang-en">While listening, note: what three things did the narrator think the ship was before recognizing it?</span></li>
+      <li><span class="lang-es">Escucha los párrafos 6–15 (el diálogo entre los hermanos). Anota una comparación que usa Ramo para describir el mar.</span><span class="lang-en">Listen to paragraphs 6–15 (the siblings' dialogue). Note one comparison Ramo uses to describe the sea.</span></li>
+    </ol>
+  </div>
+
+  <div class="glossary">
+    <div class="gterm">Aleut</div><div class="gdef"><span class="lang-es">Relativo a un pueblo que vive en las Islas Aleutianas y partes de Alaska occidental.</span><span class="lang-en">Relating to a people living on the Aleutian Islands and parts of western Alaska.</span></div>
+    <div class="gterm">Gulls</div><div class="gdef"><span class="lang-es">Gaviotas — aves marinas de patas palmeadas.</span><span class="lang-en">Web-footed seabirds.</span></div>
+    <div class="gterm">Cormorants</div><div class="gdef"><span class="lang-es">Cormoranes — grandes aves buceadoras.</span><span class="lang-en">Large diving birds.</span></div>
+    <div class="gterm">Otter</div><div class="gdef"><span class="lang-es">Nutria — mamífero peludo que come pescado.</span><span class="lang-en">A furry, fish-eating mammal that eats fish.</span></div>
+    <div class="gterm">Gaze</div><div class="gdef"><span class="lang-es">Mirar fijamente algo, a menudo admirándolo o pensando en ello.</span><span class="lang-en">Look steadily at something while admiring or thinking about it.</span></div>
+  </div>
+
+  <div class="listen-box" style="background:var(--card); border-color:var(--wire);">
+    <p class="lb-head" style="color:var(--clay-dark);">📖 <span class="lang-es">PREGUNTAS DE OPCIÓN MÚLTIPLE — practica el formato del examen</span><span class="lang-en">MULTIPLE CHOICE — practice the exam format</span></p>
+    <ol>
+      <li><span class="lang-es"><b>¿Por qué la narradora no le cuenta a Ramo sobre el barco?</b> (a) No lo vio bien (b) Quería que siguiera ayudando a recoger raíces y no saliera corriendo (c) Tenía miedo (d) Ramo ya lo sabía → <b>Respuesta: b</b></span><span class="lang-en"><b>Why doesn't the narrator tell Ramo about the ship?</b> (a) She didn't see it clearly (b) She wanted him to keep helping gather roots and not run off (c) She was afraid (d) Ramo already knew → <b>Answer: b</b></span></li>
+      <li><span class="lang-es"><b>¿Con qué animal compara la narradora los ojos de Ramo?</b> (a) Gato (b) Lagarto (c) Búho (d) Gaviota → <b>Respuesta: b</b></span><span class="lang-en"><b>What animal does the narrator compare Ramo's eyes to?</b> (a) Cat (b) Lizard (c) Owl (d) Gull → <b>Answer: b</b></span></li>
+    </ol>
+  </div>
+
+  <!-- ============ FIRESIDE CHATS ============ -->
+  <h2 class="section-title" id="fireside">
+    <span class="lang-es">Fireside Chats — Roosevelt y el New Deal</span><span class="lang-en">Fireside Chats — Roosevelt and the New Deal</span>
+  </h2>
+
+  <div class="concept">
+    <span class="tag"><span class="lang-es">LO ESENCIAL</span><span class="lang-en">THE ESSENTIAL</span></span>
+    <p>
+      <span class="lang-es">Desempleo altísimo → FDR (elegido en 1933) crea el <b>New Deal</b>: proyectos de gobierno para dar trabajo (caminos, teatro, fotografía). Habla directo a la gente por radio — "charlas junto a la chimenea" — para calmarla y explicar el plan.</span>
+      <span class="lang-en">Very high unemployment → FDR (elected 1933) creates the <b>New Deal</b>: government projects to create jobs (roads, theater, photography). He speaks directly to people over the radio — "fireside chats" — to reassure them and explain the plan.</span>
+    </p>
+  </div>
+
+  <div class="quote-block">
+    <span class="lang-es">"No tengo fe en las 'soluciones milagrosas', pero creo que podemos influir en las fuerzas económicas... Sí tengo fe en la fuerza del propósito común y en la acción unificada del pueblo estadounidense." — FDR, 24 de julio de 1933</span>
+    <span class="lang-en">"I have no faith in 'cure-alls'... I do have faith in the strength of common purpose, and in the strength of unified action taken by the American people." — FDR, July 24, 1933</span>
+  </div>
+
+  <div class="glossary">
+    <div class="gterm">Unemployment rate</div><div class="gdef"><span class="lang-es">Tasa de desempleo — % de la población sin trabajo.</span><span class="lang-en">Unemployment rate — % of the population without work.</span></div>
+    <div class="gterm">Ambitious</div><div class="gdef"><span class="lang-es">Ambicioso — que requiere gran esfuerzo.</span><span class="lang-en">Ambitious — requiring great effort.</span></div>
+    <div class="gterm">Agencies</div><div class="gdef"><span class="lang-es">Agencias — organizaciones o medios a través de los cuales se ejerce acción.</span><span class="lang-en">Agencies — organizations or means through which action is exerted.</span></div>
+  </div>
+
+  <div class="listen-box" style="background:var(--card); border-color:var(--wire);">
+    <p class="lb-head" style="color:var(--clay-dark);">📖 <span class="lang-es">PREGUNTA DE OPCIÓN MÚLTIPLE</span><span class="lang-en">MULTIPLE CHOICE</span></p>
+    <ol>
+      <li><span class="lang-es"><b>¿Por qué se llamaron "fireside chats"?</b> (a) Roosevelt vivía cerca de una chimenea (b) La mayoría de los estadounidenses se sentaban cerca de sus chimeneas mientras escuchaban la radio (c) Se transmitían en invierno (d) Eran discursos escritos → <b>Respuesta: b</b></span><span class="lang-en"><b>Why were they called "fireside chats"?</b> (a) Roosevelt lived near a fireplace (b) Most Americans sat near their fireplaces while listening to the radio (c) They aired in winter (d) They were written speeches → <b>Answer: b</b></span></li>
+    </ol>
+  </div>
+
+  <!-- ============ SIDE BY SIDE ============ -->
+  <h2 class="section-title" id="sidebyside">
+    <span class="lang-es">Side by Side — Dolores Huerta & César Chávez</span><span class="lang-en">Side by Side — Dolores Huerta & Cesar Chavez</span>
   </h2>
   <p class="section-desc">
     <span class="lang-es">Dos infancias distintas → una causa compartida → 30 años luchando "side by side".</span>
@@ -329,103 +421,11 @@
     </div>
   </div>
 
-  <!-- ============ NUTRICION ============ -->
-  <h2 class="section-title" id="nutricion">
-    <span class="lang-es">Alimentación durante la Gran Depresión</span><span class="lang-en">Eating Right During the Great Depression</span>
-  </h2>
-
-  <div class="concept">
-    <span class="tag"><span class="lang-es">LO ESENCIAL</span><span class="lang-en">THE ESSENTIAL</span></span>
-    <p>
-      <span class="lang-es">Familias en granjas comían mejor que en la ciudad (cultivaban vegetales, criaban gallinas, tenían leche). En general, la mala nutrición dañó la salud durante la Depresión. Necesitamos variedad de alimentos porque cada grupo aporta nutrientes distintos.</span>
-      <span class="lang-en">Farm families ate better than city families (they grew vegetables, raised chickens, had milk). Overall, poor nutrition hurt health during the Depression. We need variety because each food group provides different nutrients.</span>
-    </p>
-  </div>
-
-  <div class="food-grid">
-    <div class="food-card">
-      <h4><span class="lang-es">FRUTAS</span><span class="lang-en">FRUITS</span></h4>
-      <p><span class="lang-es">Contienen semillas · fibra, vitaminas A y C.</span><span class="lang-en">Contain seeds · fiber, vitamins A and C.</span></p>
-    </div>
-    <div class="food-card">
-      <h4><span class="lang-es">VERDURAS</span><span class="lang-en">VEGETABLES</span></h4>
-      <p><span class="lang-es">Fibra y vitaminas · algunas (tomate) son técnicamente frutas.</span><span class="lang-en">Fiber and vitamins · some (tomato) are technically fruits.</span></p>
-    </div>
-    <div class="food-card">
-      <h4><span class="lang-es">LÁCTEOS</span><span class="lang-en">DAIRY</span></h4>
-      <p><span class="lang-es">Calcio → huesos y dientes · proteína → músculo.</span><span class="lang-en">Calcium → bones and teeth · protein → muscle.</span></p>
-    </div>
-    <div class="food-card">
-      <h4><span class="lang-es">GRANOS</span><span class="lang-en">GRAINS</span></h4>
-      <p><span class="lang-es">Trigo, maíz, arroz → pan, cereal, pasta.</span><span class="lang-en">Wheat, corn, rice → bread, cereal, pasta.</span></p>
-    </div>
-    <div class="food-card" style="grid-column:1/-1;">
-      <h4><span class="lang-es">PROTEÍNA</span><span class="lang-en">PROTEIN</span></h4>
-      <p><span class="lang-es">Carne, huevos, frijoles → crecer músculo, reparar células, funciones básicas de vida.</span><span class="lang-en">Meat, eggs, beans → grow muscle, repair cells, basic life functions.</span></p>
-    </div>
-  </div>
-
-  <!-- ============ DUST BOWL ============ -->
-  <h2 class="section-title" id="dustbowl">
-    <span class="lang-es">El Dust Bowl — desastre ambiental</span><span class="lang-en">The Dust Bowl — an environmental disaster</span>
-  </h2>
-
-  <div class="concept">
-    <span class="tag"><span class="lang-es">LO ESENCIAL</span><span class="lang-en">THE ESSENTIAL</span></span>
-    <p>
-      <span class="lang-es">Sin pasto de pradera (raíces que sujetaban el suelo) + clima seco + vientos = tormentas de polvo que enterraron pueblos y destruyeron tierras. Causa: actividad humana + geografía + clima.</span>
-      <span class="lang-en">No prairie grass (roots that held soil) + dry weather + wind = dust storms that buried towns and destroyed land. Cause: human activity + geography + weather.</span>
-    </p>
-  </div>
-
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-year"><span class="lang-es">SIGLO XIX</span><span class="lang-en">1800s</span></div>
-      <div class="tl-text"><span class="lang-es">Colonos retiran el pasto de pradera para sembrar trigo y criar ganado. Los pastizales quedan al descubierto.</span><span class="lang-en">Settlers remove prairie grass to plant wheat and raise livestock. Grasslands are stripped bare.</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">1930</div>
-      <div class="tl-text"><span class="lang-es">Cambia el clima: poca humedad, tierra muy seca. El viento levanta el suelo suelto.</span><span class="lang-en">Weather changes: little moisture, very dry ground. Wind lifts the loose soil.</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year"><span class="lang-es">DÉCADA DE 1930</span><span class="lang-en">THROUGHOUT THE 1930s</span></div>
-      <div class="tl-text"><span class="lang-es">Tormentas de polvo entierran pueblos enteros. Se destruyen granjas, propiedades y hábitats. Miles se mudan al oeste.</span><span class="lang-en">Dust storms bury entire towns. Farms, property, and habitats are destroyed. Thousands move west.</span></div>
-    </div>
-  </div>
-
-  <div class="caption-box">
-    <span class="lang-es">📷 "Una tormenta de polvo se acerca a Rolla, Kansas — 6 de mayo de 1935."</span>
-    <span class="lang-en">📷 "A dust storm approaches Rolla, Kansas — May 6, 1935."</span>
-  </div>
-
-  <div class="glossary" style="margin-top:14px;">
-    <div class="gterm">Semi-arid climate</div><div class="gdef"><span class="lang-es">Clima semiárido — generalmente seco.</span><span class="lang-en">Semi-arid climate — generally dry.</span></div>
-    <div class="gterm">Moisture</div><div class="gdef"><span class="lang-es">Humedad — agua en forma líquida o gaseosa.</span><span class="lang-en">Moisture — water in liquid or gas form.</span></div>
-    <div class="gterm">Habitats</div><div class="gdef"><span class="lang-es">Hábitats — hogares naturales de plantas y animales.</span><span class="lang-en">Habitats — natural homes of plants and animals.</span></div>
-  </div>
-
-  <!-- ============ FIRESIDE CHATS ============ -->
-  <h2 class="section-title" id="fireside">
-    <span class="lang-es">Fireside Chats — Roosevelt y el New Deal</span><span class="lang-en">Fireside Chats — Roosevelt and the New Deal</span>
-  </h2>
-
-  <div class="concept">
-    <span class="tag"><span class="lang-es">LO ESENCIAL</span><span class="lang-en">THE ESSENTIAL</span></span>
-    <p>
-      <span class="lang-es">Desempleo altísimo → FDR (elegido en 1933) crea el <b>New Deal</b>: proyectos de gobierno para dar trabajo (caminos, teatro, fotografía). Habla directo a la gente por radio — "charlas junto a la chimenea" — para calmarla y explicar el plan.</span>
-      <span class="lang-en">Very high unemployment → FDR (elected 1933) creates the <b>New Deal</b>: government projects to create jobs (roads, theater, photography). He speaks directly to people over the radio — "fireside chats" — to reassure them and explain the plan.</span>
-    </p>
-  </div>
-
-  <div class="quote-block">
-    <span class="lang-es">"No tengo fe en las 'soluciones milagrosas', pero creo que podemos influir en las fuerzas económicas... Sí tengo fe en la fuerza del propósito común y en la acción unificada del pueblo estadounidense." — FDR, 24 de julio de 1933</span>
-    <span class="lang-en">"I have no faith in 'cure-alls'... I do have faith in the strength of common purpose, and in the strength of unified action taken by the American people." — FDR, July 24, 1933</span>
-  </div>
-
-  <div class="glossary">
-    <div class="gterm">Unemployment rate</div><div class="gdef"><span class="lang-es">Tasa de desempleo — % de la población sin trabajo.</span><span class="lang-en">Unemployment rate — % of the population without work.</span></div>
-    <div class="gterm">Ambitious</div><div class="gdef"><span class="lang-es">Ambicioso — que requiere gran esfuerzo.</span><span class="lang-en">Ambitious — requiring great effort.</span></div>
-    <div class="gterm">Agencies</div><div class="gdef"><span class="lang-es">Agencias — organizaciones o medios a través de los cuales se ejerce acción.</span><span class="lang-en">Agencies — organizations or means through which action is exerted.</span></div>
+  <div class="listen-box" style="background:var(--card); border-color:var(--wire);">
+    <p class="lb-head" style="color:var(--clay-dark);">📖 <span class="lang-es">PREGUNTA DE OPCIÓN MÚLTIPLE</span><span class="lang-en">MULTIPLE CHOICE</span></p>
+    <ol>
+      <li><span class="lang-es"><b>¿Qué evento logró el boicot de las uvas de California?</b> (a) Aumentó el precio de las uvas (b) Un lugar de trabajo más seguro para los trabajadores (c) César se volvió político (d) Dolores dejó de enseñar → <b>Respuesta: b</b></span><span class="lang-en"><b>What did the California grape boycott achieve?</b> (a) It raised grape prices (b) A safer workplace for workers (c) Cesar became a politician (d) Dolores stopped teaching → <b>Answer: b</b></span></li>
+    </ol>
   </div>
 
   <!-- ============ CHEATSHEET ============ -->
@@ -434,29 +434,26 @@
   </h2>
 
   <div class="cheat">
-    <h4><span class="lang-es">DOLORES & CÉSAR</span><span class="lang-en">DOLORES & CESAR</span></h4>
+    <h4>ISLAND OF THE BLUE DOLPHINS</h4>
     <ul>
-      <li><span class="lang-es">Maestra + trabajador migrante → unieron fuerzas por 30 años.</span><span class="lang-en">Teacher + migrant worker → joined forces for 30 years.</span></li>
-      <li><span class="lang-es">Boicot de uvas → mejor lugar de trabajo. Marcha de 340 millas → mejor paga.</span><span class="lang-en">Grape boycott → safer workplace. 340-mile march → better pay.</span></li>
-      <li><span class="lang-es">Lema: "¡Sí, se puede!" · Ley de inmigración 1986.</span><span class="lang-en">Chant: "Yes, we can!" · 1986 immigration law.</span></li>
-    </ul>
-    <h4><span class="lang-es">NUTRICIÓN</span><span class="lang-en">NUTRITION</span></h4>
-    <ul>
-      <li><span class="lang-es">5 grupos: frutas, verduras, lácteos, granos, proteína — cada uno con nutrientes distintos.</span><span class="lang-en">5 groups: fruits, vegetables, dairy, grains, protein — each with different nutrients.</span></li>
-    </ul>
-    <h4>DUST BOWL</h4>
-    <ul>
-      <li><span class="lang-es">Sin raíces de pasto + sequía + viento = tormentas de polvo.</span><span class="lang-en">No grass roots + drought + wind = dust storms.</span></li>
+      <li><span class="lang-es">Narradora ve un barco Aleut acercarse; no le dice a Ramo para que siga trabajando.</span><span class="lang-en">Narrator sees an Aleut ship approaching; doesn't tell Ramo so he keeps working.</span></li>
+      <li><span class="lang-es">Ramo: imaginativo, ojos "de lagarto", cree que el mar es una piedra azul.</span><span class="lang-en">Ramo: imaginative, "lizard" eyes, thinks the sea is a blue stone.</span></li>
     </ul>
     <h4><span class="lang-es">FIRESIDE CHATS</span><span class="lang-en">FIRESIDE CHATS</span></h4>
     <ul>
       <li><span class="lang-es">FDR (1933) → New Deal (empleos) + charlas de radio para calmar al país.</span><span class="lang-en">FDR (1933) → New Deal (jobs) + radio chats to reassure the country.</span></li>
     </ul>
+    <h4>SIDE BY SIDE</h4>
+    <ul>
+      <li><span class="lang-es">Maestra + trabajador migrante → unieron fuerzas por 30 años.</span><span class="lang-en">Teacher + migrant worker → joined forces for 30 years.</span></li>
+      <li><span class="lang-es">Boicot de uvas → mejor lugar de trabajo. Marcha de 340 millas → mejor paga.</span><span class="lang-en">Grape boycott → safer workplace. 340-mile march → better pay.</span></li>
+      <li><span class="lang-es">Lema: "¡Sí, se puede!" · Ley de inmigración 1986.</span><span class="lang-en">Chant: "Yes, we can!" · 1986 immigration law.</span></li>
+    </ul>
   </div>
 
   <footer>
-    <span class="lang-es">Side by Side · Guía de concepto · Estudios Sociales</span>
-    <span class="lang-en">Side by Side · Concept guide · Social Studies</span>
+    <span class="lang-es">Guía de Lectura · Unidad 6 · Lenguaje</span>
+    <span class="lang-en">Reading Guide · Unit 6 · Language Arts</span>
   </footer>
 
 </main>
