@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Side by Side · Great Depression Studies</title>
+<style>
+  :root{
+    --paper:#EFE8D8;
+    --paper-dark:#E3D9C2;
+    --ink:#2B2620;
+    --ink-soft:#5A5142;
+    --clay:#A6461F;
+    --clay-dark:#7C3316;
+    --field:#3F5A3B;
+    --field-light:#E4EADC;
+    --dust:#C9A971;
+    --wire:#B7A98A;
+    --radio-amber:#B8801E;
+    --card:#F7F2E6;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(43,38,32,0.025) 0px, rgba(43,38,32,0.025) 1px, transparent 1px, transparent 3px);
+    color:var(--ink);
+    font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    line-height:1.55;
+  }
+  .lang-en{display:none;}
+  body.lang-english .lang-es{display:none;}
+  body.lang-english .lang-en{display:inline;}
+
+  /* ---- top bar ---- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper-dark);
+    border-bottom:2px solid var(--ink);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 18px;
+    font-family: 'Trebuchet MS', Verdana, sans-serif;
+  }
+  .topbar-nav{display:flex; gap:4px; flex-wrap:wrap;}
+  .topbar-nav a{
+    font-size:12.5px; color:var(--ink-soft); text-decoration:none;
+    padding:6px 9px; border-radius:3px; border:1px solid transparent;
+    white-space:nowrap;
+  }
+  .topbar-nav a.active{background:var(--card); border-color:var(--wire); color:var(--clay-dark); font-weight:bold;}
+  .lang-toggle{display:flex; gap:6px; flex-shrink:0;}
+  .lang-btn{
+    font-family:inherit; font-size:13px; font-weight:bold; cursor:pointer;
+    border:2px solid var(--ink); background:var(--card); color:var(--ink);
+    padding:6px 12px; border-radius:4px;
+  }
+  .lang-btn.on{background:var(--clay); color:#fff; border-color:var(--clay-dark);}
+
+  main{max-width:var(--max); margin:0 auto; padding:0 20px 60px;}
+
+  /* ---- cover ---- */
+  .cover{
+    padding:52px 0 30px; text-align:left; border-bottom:3px double var(--ink);
+    margin-bottom:30px;
+  }
+  .cover .kicker{
+    font-family:'Trebuchet MS', sans-serif; font-size:12.5px; letter-spacing:0.03em;
+    color:var(--clay-dark); margin:0 0 10px;
+  }
+  .cover h1{
+    font-size:2.5rem; margin:0 0 6px; line-height:1.08; color:var(--ink);
+    font-weight:normal; font-family:'Iowan Old Style', Georgia, serif;
+  }
+  .cover .sub{font-size:1.05rem; color:var(--ink-soft); font-style:italic; margin:0 0 18px;}
+  .cover .meta{font-family:'Trebuchet MS', sans-serif; font-size:12.5px; color:var(--ink-soft);}
+
+  /* ---- lee esto primero ---- */
+  .brief{
+    background:var(--card); border-left:4px solid var(--field);
+    padding:16px 18px; margin:0 0 34px; font-size:0.95rem;
+  }
+  .brief strong{color:var(--field);}
+
+  h2.section-title{
+    font-size:1.5rem; margin:50px 0 6px; padding-bottom:8px;
+    border-bottom:2px solid var(--ink); color:var(--ink); font-weight:normal;
+    scroll-margin-top:60px;
+  }
+  .section-desc{font-family:'Trebuchet MS', sans-serif; font-size:12.5px; color:var(--ink-soft); margin:0 0 20px;}
+
+  /* ---- glosario ---- */
+  .glossary{
+    display:grid; grid-template-columns: 1fr 1fr; gap:0;
+    border:1px solid var(--wire); border-radius:2px; overflow:hidden;
+    background:var(--card);
+  }
+  .gterm{
+    padding:9px 12px; border-bottom:1px solid var(--wire); border-right:1px solid var(--wire);
+    font-family:'Trebuchet MS', sans-serif; font-size:13px; font-weight:bold; color:var(--clay-dark);
+  }
+  .gdef{
+    padding:9px 12px; border-bottom:1px solid var(--wire);
+    font-size:13.5px; color:var(--ink-soft);
+  }
+  @media (max-width:640px){
+    .glossary{grid-template-columns:1fr;}
+    .gterm{border-right:none;}
+  }
+
+  /* ---- story panel ---- */
+  .story-para{
+    display:flex; gap:14px; padding:12px 0; border-bottom:1px solid rgba(183,169,138,0.5);
+  }
+  .story-num{
+    font-family:'Trebuchet MS', sans-serif; font-size:11px; color:var(--wire);
+    min-width:22px; padding-top:3px; font-weight:bold;
+  }
+  .story-text{font-size:1rem;}
+  .story-text b{color:var(--clay-dark);}
+
+  .quote-block{
+    background:var(--field-light); border-left:4px solid var(--field);
+    padding:14px 18px; margin:16px 0; font-style:italic; font-size:0.95rem;
+  }
+
+  /* ---- concept card (Pareto core) ---- */
+  .concept{
+    background:var(--card); border:1px solid var(--wire); border-radius:3px;
+    padding:18px 20px; margin:0 0 18px;
+  }
+  .concept h3{
+    margin:0 0 8px; font-size:1.1rem; color:var(--clay-dark); font-weight:normal;
+    font-family:'Iowan Old Style', Georgia, serif;
+  }
+  .concept p{margin:0 0 8px; font-size:0.95rem;}
+  .concept .tag{
+    display:inline-block; font-family:'Trebuchet MS', sans-serif; font-size:10.5px;
+    color:#fff; background:var(--field); padding:2px 7px; border-radius:2px; margin-bottom:8px;
+  }
+
+  /* ---- food group grid ---- */
+  .food-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:16px 0;}
+  @media (max-width:640px){.food-grid{grid-template-columns:1fr;}}
+  .food-card{
+    border:1px solid var(--wire); border-radius:3px; padding:13px 15px; background:var(--card);
+  }
+  .food-card h4{
+    margin:0 0 5px; font-family:'Trebuchet MS', sans-serif; font-size:12.5px;
+    color:var(--field); letter-spacing:0.02em;
+  }
+  .food-card p{margin:0; font-size:0.9rem;}
+
+  /* ---- timeline (Dust Bowl) ---- */
+  .timeline{border-left:3px solid var(--dust); margin:18px 0 18px 8px; padding-left:20px;}
+  .tl-item{position:relative; padding-bottom:18px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:''; position:absolute; left:-26px; top:4px; width:11px; height:11px;
+    border-radius:50%; background:var(--clay); border:2px solid var(--paper);
+  }
+  .tl-year{font-family:'Trebuchet MS', sans-serif; font-size:12px; font-weight:bold; color:var(--clay-dark);}
+  .tl-text{font-size:0.92rem; margin-top:2px;}
+
+  .caption-box{
+    background:var(--paper-dark); border:1px dashed var(--wire); padding:10px 14px;
+    font-size:0.85rem; font-style:italic; color:var(--ink-soft); margin:14px 0;
+  }
+
+  /* ---- cheatsheet ---- */
+  .cheat{
+    background:var(--card); border:2px solid var(--ink); border-radius:3px; padding:20px 22px; margin-top:16px;
+  }
+  .cheat h4{margin:0 0 6px; font-size:0.95rem; color:var(--clay-dark); font-family:'Trebuchet MS', sans-serif;}
+  .cheat ul{margin:0 0 16px; padding-left:18px; font-size:0.88rem;}
+  .cheat ul:last-child{margin-bottom:0;}
+  .cheat li{margin-bottom:4px;}
+
+  footer{
+    text-align:center; font-family:'Trebuchet MS', sans-serif; font-size:11px; color:var(--ink-soft);
+    padding:30px 0 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <nav class="topbar-nav" id="tocNav">
+    <a href="#concepto" class="active">
+      <span class="lang-es">Concepto</span><span class="lang-en">Concept</span>
+    </a>
+    <a href="#historia">
+      <span class="lang-es">Dolores & César</span><span class="lang-en">Dolores & Cesar</span>
+    </a>
+    <a href="#nutricion">
+      <span class="lang-es">Nutrición</span><span class="lang-en">Nutrition</span>
+    </a>
+    <a href="#dustbowl">
+      <span class="lang-es">Dust Bowl</span><span class="lang-en">Dust Bowl</span>
+    </a>
+    <a href="#fireside">
+      <span class="lang-es">Fireside Chats</span><span class="lang-en">Fireside Chats</span>
+    </a>
+    <a href="#cheatsheet">
+      <span class="lang-es">Resumen</span><span class="lang-en">Summary</span>
+    </a>
+  </nav>
+  <div class="lang-toggle">
+    <button class="lang-btn on" id="btnEs" onclick="setLang('es')">🇵🇦 Español</button>
+    <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇺🇸 English</button>
+  </div>
+</div>
+
+<main>
+
+  <div class="cover">
+    <p class="kicker">
+      <span class="lang-es">ESTUDIOS SOCIALES · GRAN DEPRESIÓN</span>
+      <span class="lang-en">SOCIAL STUDIES · THE GREAT DEPRESSION</span>
+    </p>
+    <h1>Side by Side</h1>
+    <p class="sub">
+      <span class="lang-es">Dolores Huerta, César Chávez y la vida durante la Gran Depresión</span>
+      <span class="lang-en">Dolores Huerta, Cesar Chavez, and life during the Great Depression</span>
+    </p>
+    <p class="meta">
+      <span class="lang-es">Guía de concepto — 31 de agosto de 2026</span>
+      <span class="lang-en">Concept guide — August 31, 2026</span>
+    </p>
+  </div>
+
+  <div class="brief">
+    <span class="lang-es">
+      <strong>Solo lo esencial.</strong> Cinco piezas de contenido — vocabulario, una biografía, nutrición, el Dust Bowl y las charlas de Roosevelt — reducidas a lo que realmente hay que saber. Nada de relleno: si aparece aquí, es porque importa.
+    </span>
+    <span class="lang-en">
+      <strong>Just the essentials.</strong> Five pieces of content — vocabulary, a biography, nutrition, the Dust Bowl, and Roosevelt's chats — cut down to what actually matters. No filler: if it's here, it counts.
+    </span>
+  </div>
+
+  <!-- ============ CONCEPTO / VOCABULARIO ============ -->
+  <h2 class="section-title" id="concepto">
+    <span class="lang-es">Vocabulario clave</span><span class="lang-en">Key Vocabulary</span>
+  </h2>
+  <p class="section-desc">
+    <span class="lang-es">Bilingüe siempre — es lo que hay que memorizar.</span>
+    <span class="lang-en">Always bilingual — this is what you memorize.</span>
+  </p>
+
+  <div class="glossary">
+    <div class="gterm">Nonfiction</div><div class="gdef">No ficción — texto basado en personas, lugares o hechos reales.</div>
+    <div class="gterm">Primary source</div><div class="gdef">Fuente primaria — documento, cartel o artefacto original de una época.</div>
+    <div class="gterm">Migrant</div><div class="gdef">Migrante — persona que se muda con frecuencia para buscar trabajo.</div>
+    <div class="gterm">Crops</div><div class="gdef">Cultivos — plantas agrícolas cultivadas como alimento.</div>
+    <div class="gterm">Drop out</div><div class="gdef">Abandonar los estudios — dejar la escuela sin terminar.</div>
+    <div class="gterm">Poisons</div><div class="gdef">Venenos — químicos tóxicos dañinos para los seres vivos.</div>
+    <div class="gterm">Strike</div><div class="gdef">Huelga — negarse a trabajar hasta mejorar condiciones o salario.</div>
+    <div class="gterm">Living wage</div><div class="gdef">Salario digno — paga suficiente para cubrir gastos básicos.</div>
+    <div class="gterm">Chant</div><div class="gdef">Corear — repetir frases rítmicamente en grupo.</div>
+    <div class="gterm">Liberation</div><div class="gdef">Liberación — obtener igualdad de derechos y libertad social.</div>
+  </div>
+
+  <!-- ============ HISTORIA: DOLORES & CESAR ============ -->
+  <h2 class="section-title" id="historia">
+    <span class="lang-es">Dolores Huerta & César Chávez</span><span class="lang-en">Dolores Huerta & Cesar Chavez</span>
+  </h2>
+  <p class="section-desc">
+    <span class="lang-es">Dos infancias distintas → una causa compartida → 30 años luchando "side by side".</span>
+    <span class="lang-en">Two different childhoods → one shared cause → 30 years fighting "side by side".</span>
+  </p>
+
+  <div class="concept">
+    <span class="tag"><span class="lang-es">LO ESENCIAL</span><span class="lang-en">THE ESSENTIAL</span></span>
+    <p>
+      <span class="lang-es"><b>Dolores</b> creció hablando rápido y luego fue maestra; vio a niños de trabajadores agrícolas llegar a clase con hambre. <b>César</b> creció como trabajador migrante recogiendo uva y lechuga bajo el sol, sin suficiente agua. Se conocieron, unieron fuerzas y por 30 años lucharon por mejores condiciones para los trabajadores agrícolas.</span>
+      <span class="lang-en"><b>Dolores</b> grew up talking fast and became a teacher; she saw farmworkers' children arrive at school hungry. <b>Cesar</b> grew up as a migrant worker picking grapes and lettuce under the sun, without enough water. They met, joined forces, and for 30 years fought for better conditions for farmworkers.</span>
+    </p>
+  </div>
+
+  <div class="story-para">
+    <div class="story-num">1–4</div>
+    <div class="story-text">
+      <span class="lang-es">Dolores nació en Nuevo México, se mudó a California y de niña ya recaudaba dinero para soldados en la Segunda Guerra Mundial. César, en Arizona, perdió la casa de su familia y tuvo que dejar la escuela para seguir los cultivos como trabajador migrante — pero siempre cargaba un libro.</span>
+      <span class="lang-en">Dolores was born in New Mexico, moved to California, and as a girl already raised money for WWII soldiers. Cesar, in Arizona, lost his family's home and had to leave school to follow the crops as a migrant worker — but he always carried a book.</span>
+    </div>
+  </div>
+
+  <div class="story-para">
+    <div class="story-num">5–8</div>
+    <div class="story-text">
+      <span class="lang-es">Dolores se volvió maestra y vio niños llegar a la escuela con hambre. César y otros trabajadores se lastimaban con herramientas peligrosas y respiraban venenos que los enfermaban.</span>
+      <span class="lang-en">Dolores became a teacher and saw children arrive at school hungry. Cesar and other workers got hurt by dangerous tools and breathed poisons that made them sick.</span>
+    </div>
+  </div>
+
+  <div class="story-para">
+    <div class="story-num">9–14</div>
+    <div class="story-text">
+      <span class="lang-es">Se conocieron y unieron fuerzas: viajaban de pueblo en pueblo invitando trabajadores a unirse a "la causa". Pidieron boicotear las uvas de California — la gente escuchó, las uvas se pudrieron en la viña, y los trabajadores ganaron un lugar de trabajo más seguro.</span>
+      <span class="lang-en">They met and joined forces: they traveled town to town inviting workers to join "the cause". They asked people to boycott California grapes — people listened, the grapes rotted on the vine, and the workers won a safer workplace.</span>
+    </div>
+  </div>
+
+  <div class="story-para">
+    <div class="story-num">15–18</div>
+    <div class="story-text">
+      <span class="lang-es">César lideró una marcha de 340 millas hasta Sacramento (llegaron el cumpleaños de Dolores). Los agricultores firmaron un contrato con mejor paga. Cuando nadie escuchaba, César ayunó 36 días. Nació el lema: <i>"Yes, we can!"</i> — "¡Sí, se puede!".</span>
+      <span class="lang-en">Cesar led a 340-mile march to Sacramento (they arrived on Dolores's birthday). Growers signed a contract with better pay. When no one listened, Cesar fasted for 36 days. The chant was born: <i>"Yes, we can!"</i></span>
+    </div>
+  </div>
+
+  <div class="story-para">
+    <div class="story-num">19–23</div>
+    <div class="story-text">
+      <span class="lang-es">Por 30 años trabajaron lado a lado y ayudaron a aprobar la ley de inmigración de 1986, que dio la ciudadanía a más de un millón de personas. César falleció en 1993; Dolores sigue marchando por justicia.</span>
+      <span class="lang-en">For 30 years they worked side by side and helped pass the 1986 immigration law, which gave citizenship to more than a million people. Cesar passed away in 1993; Dolores still marches for justice.</span>
+    </div>
+  </div>
+
+  <!-- ============ NUTRICION ============ -->
+  <h2 class="section-title" id="nutricion">
+    <span class="lang-es">Alimentación durante la Gran Depresión</span><span class="lang-en">Eating Right During the Great Depression</span>
+  </h2>
+
+  <div class="concept">
+    <span class="tag"><span class="lang-es">LO ESENCIAL</span><span class="lang-en">THE ESSENTIAL</span></span>
+    <p>
+      <span class="lang-es">Familias en granjas comían mejor que en la ciudad (cultivaban vegetales, criaban gallinas, tenían leche). En general, la mala nutrición dañó la salud durante la Depresión. Necesitamos variedad de alimentos porque cada grupo aporta nutrientes distintos.</span>
+      <span class="lang-en">Farm families ate better than city families (they grew vegetables, raised chickens, had milk). Overall, poor nutrition hurt health during the Depression. We need variety because each food group provides different nutrients.</span>
+    </p>
+  </div>
+
+  <div class="food-grid">
+    <div class="food-card">
+      <h4><span class="lang-es">FRUTAS</span><span class="lang-en">FRUITS</span></h4>
+      <p><span class="lang-es">Contienen semillas · fibra, vitaminas A y C.</span><span class="lang-en">Contain seeds · fiber, vitamins A and C.</span></p>
+    </div>
+    <div class="food-card">
+      <h4><span class="lang-es">VERDURAS</span><span class="lang-en">VEGETABLES</span></h4>
+      <p><span class="lang-es">Fibra y vitaminas · algunas (tomate) son técnicamente frutas.</span><span class="lang-en">Fiber and vitamins · some (tomato) are technically fruits.</span></p>
+    </div>
+    <div class="food-card">
+      <h4><span class="lang-es">LÁCTEOS</span><span class="lang-en">DAIRY</span></h4>
+      <p><span class="lang-es">Calcio → huesos y dientes · proteína → músculo.</span><span class="lang-en">Calcium → bones and teeth · protein → muscle.</span></p>
+    </div>
+    <div class="food-card">
+      <h4><span class="lang-es">GRANOS</span><span class="lang-en">GRAINS</span></h4>
+      <p><span class="lang-es">Trigo, maíz, arroz → pan, cereal, pasta.</span><span class="lang-en">Wheat, corn, rice → bread, cereal, pasta.</span></p>
+    </div>
+    <div class="food-card" style="grid-column:1/-1;">
+      <h4><span class="lang-es">PROTEÍNA</span><span class="lang-en">PROTEIN</span></h4>
+      <p><span class="lang-es">Carne, huevos, frijoles → crecer músculo, reparar células, funciones básicas de vida.</span><span class="lang-en">Meat, eggs, beans → grow muscle, repair cells, basic life functions.</span></p>
+    </div>
+  </div>
+
+  <!-- ============ DUST BOWL ============ -->
+  <h2 class="section-title" id="dustbowl">
+    <span class="lang-es">El Dust Bowl — desastre ambiental</span><span class="lang-en">The Dust Bowl — an environmental disaster</span>
+  </h2>
+
+  <div class="concept">
+    <span class="tag"><span class="lang-es">LO ESENCIAL</span><span class="lang-en">THE ESSENTIAL</span></span>
+    <p>
+      <span class="lang-es">Sin pasto de pradera (raíces que sujetaban el suelo) + clima seco + vientos = tormentas de polvo que enterraron pueblos y destruyeron tierras. Causa: actividad humana + geografía + clima.</span>
+      <span class="lang-en">No prairie grass (roots that held soil) + dry weather + wind = dust storms that buried towns and destroyed land. Cause: human activity + geography + weather.</span>
+    </p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year"><span class="lang-es">SIGLO XIX</span><span class="lang-en">1800s</span></div>
+      <div class="tl-text"><span class="lang-es">Colonos retiran el pasto de pradera para sembrar trigo y criar ganado. Los pastizales quedan al descubierto.</span><span class="lang-en">Settlers remove prairie grass to plant wheat and raise livestock. Grasslands are stripped bare.</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1930</div>
+      <div class="tl-text"><span class="lang-es">Cambia el clima: poca humedad, tierra muy seca. El viento levanta el suelo suelto.</span><span class="lang-en">Weather changes: little moisture, very dry ground. Wind lifts the loose soil.</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year"><span class="lang-es">DÉCADA DE 1930</span><span class="lang-en">THROUGHOUT THE 1930s</span></div>
+      <div class="tl-text"><span class="lang-es">Tormentas de polvo entierran pueblos enteros. Se destruyen granjas, propiedades y hábitats. Miles se mudan al oeste.</span><span class="lang-en">Dust storms bury entire towns. Farms, property, and habitats are destroyed. Thousands move west.</span></div>
+    </div>
+  </div>
+
+  <div class="caption-box">
+    <span class="lang-es">📷 "Una tormenta de polvo se acerca a Rolla, Kansas — 6 de mayo de 1935."</span>
+    <span class="lang-en">📷 "A dust storm approaches Rolla, Kansas — May 6, 1935."</span>
+  </div>
+
+  <div class="glossary" style="margin-top:14px;">
+    <div class="gterm">Semi-arid climate</div><div class="gdef"><span class="lang-es">Clima semiárido — generalmente seco.</span><span class="lang-en">Semi-arid climate — generally dry.</span></div>
+    <div class="gterm">Moisture</div><div class="gdef"><span class="lang-es">Humedad — agua en forma líquida o gaseosa.</span><span class="lang-en">Moisture — water in liquid or gas form.</span></div>
+    <div class="gterm">Habitats</div><div class="gdef"><span class="lang-es">Hábitats — hogares naturales de plantas y animales.</span><span class="lang-en">Habitats — natural homes of plants and animals.</span></div>
+  </div>
+
+  <!-- ============ FIRESIDE CHATS ============ -->
+  <h2 class="section-title" id="fireside">
+    <span class="lang-es">Fireside Chats — Roosevelt y el New Deal</span><span class="lang-en">Fireside Chats — Roosevelt and the New Deal</span>
+  </h2>
+
+  <div class="concept">
+    <span class="tag"><span class="lang-es">LO ESENCIAL</span><span class="lang-en">THE ESSENTIAL</span></span>
+    <p>
+      <span class="lang-es">Desempleo altísimo → FDR (elegido en 1933) crea el <b>New Deal</b>: proyectos de gobierno para dar trabajo (caminos, teatro, fotografía). Habla directo a la gente por radio — "charlas junto a la chimenea" — para calmarla y explicar el plan.</span>
+      <span class="lang-en">Very high unemployment → FDR (elected 1933) creates the <b>New Deal</b>: government projects to create jobs (roads, theater, photography). He speaks directly to people over the radio — "fireside chats" — to reassure them and explain the plan.</span>
+    </p>
+  </div>
+
+  <div class="quote-block">
+    <span class="lang-es">"No tengo fe en las 'soluciones milagrosas', pero creo que podemos influir en las fuerzas económicas... Sí tengo fe en la fuerza del propósito común y en la acción unificada del pueblo estadounidense." — FDR, 24 de julio de 1933</span>
+    <span class="lang-en">"I have no faith in 'cure-alls'... I do have faith in the strength of common purpose, and in the strength of unified action taken by the American people." — FDR, July 24, 1933</span>
+  </div>
+
+  <div class="glossary">
+    <div class="gterm">Unemployment rate</div><div class="gdef"><span class="lang-es">Tasa de desempleo — % de la población sin trabajo.</span><span class="lang-en">Unemployment rate — % of the population without work.</span></div>
+    <div class="gterm">Ambitious</div><div class="gdef"><span class="lang-es">Ambicioso — que requiere gran esfuerzo.</span><span class="lang-en">Ambitious — requiring great effort.</span></div>
+    <div class="gterm">Agencies</div><div class="gdef"><span class="lang-es">Agencias — organizaciones o medios a través de los cuales se ejerce acción.</span><span class="lang-en">Agencies — organizations or means through which action is exerted.</span></div>
+  </div>
+
+  <!-- ============ CHEATSHEET ============ -->
+  <h2 class="section-title" id="cheatsheet">
+    <span class="lang-es">Resumen de una página</span><span class="lang-en">One-page summary</span>
+  </h2>
+
+  <div class="cheat">
+    <h4><span class="lang-es">DOLORES & CÉSAR</span><span class="lang-en">DOLORES & CESAR</span></h4>
+    <ul>
+      <li><span class="lang-es">Maestra + trabajador migrante → unieron fuerzas por 30 años.</span><span class="lang-en">Teacher + migrant worker → joined forces for 30 years.</span></li>
+      <li><span class="lang-es">Boicot de uvas → mejor lugar de trabajo. Marcha de 340 millas → mejor paga.</span><span class="lang-en">Grape boycott → safer workplace. 340-mile march → better pay.</span></li>
+      <li><span class="lang-es">Lema: "¡Sí, se puede!" · Ley de inmigración 1986.</span><span class="lang-en">Chant: "Yes, we can!" · 1986 immigration law.</span></li>
+    </ul>
+    <h4><span class="lang-es">NUTRICIÓN</span><span class="lang-en">NUTRITION</span></h4>
+    <ul>
+      <li><span class="lang-es">5 grupos: frutas, verduras, lácteos, granos, proteína — cada uno con nutrientes distintos.</span><span class="lang-en">5 groups: fruits, vegetables, dairy, grains, protein — each with different nutrients.</span></li>
+    </ul>
+    <h4>DUST BOWL</h4>
+    <ul>
+      <li><span class="lang-es">Sin raíces de pasto + sequía + viento = tormentas de polvo.</span><span class="lang-en">No grass roots + drought + wind = dust storms.</span></li>
+    </ul>
+    <h4><span class="lang-es">FIRESIDE CHATS</span><span class="lang-en">FIRESIDE CHATS</span></h4>
+    <ul>
+      <li><span class="lang-es">FDR (1933) → New Deal (empleos) + charlas de radio para calmar al país.</span><span class="lang-en">FDR (1933) → New Deal (jobs) + radio chats to reassure the country.</span></li>
+    </ul>
+  </div>
+
+  <footer>
+    <span class="lang-es">Side by Side · Guía de concepto · Estudios Sociales</span>
+    <span class="lang-en">Side by Side · Concept guide · Social Studies</span>
+  </footer>
+
+</main>
+
+<script>
+function setLang(lang){
+  document.body.classList.toggle('lang-english', lang === 'en');
+  document.getElementById('btnEs').classList.toggle('on', lang === 'es');
+  document.getElementById('btnEn').classList.toggle('on', lang === 'en');
+}
+
+const sections = document.querySelectorAll('main h2[id]');
+const navLinks = document.querySelectorAll('#tocNav a');
+const linkMap = {};
+navLinks.forEach(a => linkMap[a.getAttribute('href').slice(1)] = a);
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = linkMap[entry.target.id];
+      if(link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
